@@ -15,4 +15,14 @@ jobs:
     steps:
       - name: Checkout the code base
         uses: actions/checkout@v4
+      - name: Copy code to EC2
+        uses: appleboy/scp-action@v0.1.4
+        
+        with:
+          host: ${{ secrets.EC2_HOST_NAME }}
+          username: ${{ secrets.EC2_USERNAME}}
+          key: ${{ secrets.EC2_SSHKEY }}
+          port: 22
+          source: ./
+          target: /var/www/html/
         
